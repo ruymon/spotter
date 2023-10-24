@@ -32,8 +32,8 @@ export function OverlayAirportMovementStatistics({ count, variant }: OverlayAirp
       </figure>
 
       <div className="flex flex-col gap-1">
-        <span className="text-5xl font-bold text-muted">{count}</span>
-        <span className="text-sm text-muted">{AirportMovementStatisticsLabelVariants[variant]}</span>
+        <span className="text-5xl font-bold text-gray-300">{count}</span>
+        <span className="text-sm text-gray-300">{AirportMovementStatisticsLabelVariants[variant]}</span>
       </div>
     </div>
   )

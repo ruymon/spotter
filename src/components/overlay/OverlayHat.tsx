@@ -19,6 +19,6 @@ const variants: { [key in OverlayHatVariants]: string } = {
 
 export function OverlayHat({ label, variant = 'primary' }: OverlayHatProps) {
   return (
-    <span className={cn("text-sm text-accent font-medium pl-2 border-destructive border-l-2 capitalize", variants[variant])}>{label}</span>
+    <span className={cn("text-sm text-accent font-medium pl-2 border-destructive border-l-2 capitalize text-gray-300", variants[variant])}>{label}</span>
   );
 };

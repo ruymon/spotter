@@ -12,8 +12,8 @@ export function OverlayHeader({ title, subtitle, label }: OverlayHeaderProps) {
       <OverlayHat label={label} variant="primary" />
 
       <div className="flex flex-col gap-1.5">
-        <h1 className="text-3xl font-bold">{title}</h1>
-        <span className="text-muted font-normal text-sm">{subtitle}</span>
+        <h1 className="text-3xl font-bold text-gray-50">{title}</h1>
+        <span className="text-muted font-normal text-sm text-gray-300">{subtitle}</span>
       </div>
     </header>
   );
