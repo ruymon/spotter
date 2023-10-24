@@ -32,3 +32,11 @@ export type FeaturesConfig = {
 }[];
 
 export type NavbarConfig = NavItem[];
+
+export type Overlay = {
+  title: string;
+  subtitle: string;
+  locationIcao: string;
+  label: string;
+  isPreview: boolean;
+}

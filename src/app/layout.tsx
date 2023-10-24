@@ -1,6 +1,7 @@
 import { Fira_Code as FontMono, Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
@@ -133,7 +134,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
           fontMono.variable
         )}
       >
+        <ThemeProvider
+          themes={['light', 'dark']}
+          attribute="class"
+          defaultTheme="light"
+          disableTransitionOnChange
+          enableSystem={false}
+        >
           {children}
+        </ThemeProvider>
       </body>
     </html>
   );

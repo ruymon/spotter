@@ -1,7 +1,13 @@
+"use client";
+
+import { cn } from "@/lib/utils";
 import { type ISidebarNavItem } from "@/types";
-import { Fingerprint, History, Home, Plus, SlidersHorizontal, Star } from "lucide-react";
+import { Aperture, Fingerprint, History, Home, Lightbulb, LogOut, Moon, PanelLeftClose, PanelLeftOpen, Plus, SlidersHorizontal, Star } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useState } from "react";
 import { Logo } from "../logo";
 import { Button } from "../ui/button";
+import { Separator } from "../ui/separator";
 import { SidebarNavItem } from "./SidebarNavItem";
 
 const SidebarNavItems: ISidebarNavItem[] = [
@@ -45,33 +51,84 @@ const SidebarNavItems: ISidebarNavItem[] = [
 interface SidebarNavProps {};
 
 export function SidebarNav({}: SidebarNavProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const { theme, setTheme } = useTheme();
+
   return (
-    <aside className="bg-primary-foreground flex flex-col gap-16 w-80 h-screen sticky top-0">
-      <div className="flex flex-col gap-16 px-8 pt-10">
-        <Logo />
-
-        <div className="flex items-center gap-4">
-          <div className="p-2 rounded-md bg-primary text-primary-foreground">
-            <Fingerprint className="w-5 h-5" />
-          </div>
-
-          <div className="flex flex-col">
-            <span className="text-secondary-foreground font-semibold">Vatbrz</span>
-            <span className="text-sm text-muted-foreground">Conta vinculada à Vatsim HQ</span>
-          </div>
-        </div>
+    <aside className={cn("bg-primary-foreground flex flex-col gap-5 w-80 h-screen sticky top-0 px-4 py-8", isExpanded ? 'w-80' : 'w-16 items-center')}>
+      <div className="flex flex-col gap-6 px-4" >
+        {isExpanded ? <Logo /> : <Aperture className="w-7 text-primary shrink-0" />}
+        <Separator className="w-full" />
       </div>
 
-
-      <nav className="flex flex-col gap-4">
+      <nav className={cn("flex flex-col gap-4 grow justify-start", isExpanded ? "items-start" : "items-center")}>
         {SidebarNavItems.map(({ href, title, icon, disabled, external }) => (
-          <SidebarNavItem href={href} key={title} title={title} icon={icon} disabled={disabled} external={external} />)
+          <SidebarNavItem href={href} key={title} title={title} icon={icon} disabled={disabled} external={external} isExpanded={isExpanded} />)
         )}
       </nav>
 
-      <div className="flex flex-col gap-4 p-8 text-muted-foreground grow justify-end items-center">
-        <Button variant="ghost" size="lg">Sair da plataforma</Button>
-        <span className="text-xs">Spotter &copy; {new Date().getFullYear()}</span>
+      <div className={cn("flex flex-col gap-4", isExpanded ? "items-start" : "items-center")}>
+        <div className="flex items-center gap-4 h-10 px-4 mb-6">
+          <Fingerprint className="shrink-0 w-5 text-primary" />
+
+          {isExpanded && (
+            <div className="flex flex-col">
+              <span className="text-secondary-foreground font-semibold text-sm">Vatbrz</span>
+              <span className="text-xs text-muted-foreground">Conta vinculada à Vatsim HQ</span>
+            </div>
+          )}
+        </div>
+
+        <Button
+          variant="ghost"
+          size={isExpanded ? "default" : "icon"}
+          className={
+            cn(
+              "relative text-muted-foreground hover:text-secondary-foreground transition-colors",
+              isExpanded ? "justify-start flex items-center gap-4 w-full" : "justify-center"
+            )
+          }
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          <figure className="shrink-0 w-5 flex items-center justify-center aspect-square">
+            {theme === "dark" ? <Lightbulb /> : <Moon />}
+          </figure>
+          {isExpanded && <span>{theme === "dark" ? "Modo claro" : "Modo escuro"}</span>}
+        </Button>
+
+        <Button
+          variant="ghost"
+          size={isExpanded ? "default" : "icon"}
+          className={
+            cn(
+              "relative text-muted-foreground hover:text-secondary-foreground transition-colors",
+              isExpanded ? "justify-start flex items-center gap-4 w-full" : "justify-center"
+            )
+          }
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          <figure className="shrink-0 w-5 flex items-center justify-center aspect-square">
+            {isExpanded ? <PanelLeftClose /> : <PanelLeftOpen />}
+          </figure>
+          {isExpanded && <span>Recolher painel lateral</span>}
+        </Button>
+
+        <Button
+          variant="ghost"
+          size={isExpanded ? "default" : "icon"}
+          className={
+            cn(
+              "relative text-muted-foreground hover:text-secondary-foreground transition-colors",
+              isExpanded ? "justify-start flex items-center gap-4 w-full" : "justify-center"
+            )
+          }
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          <figure className="shrink-0 w-5 flex items-center justify-center aspect-square">
+            <LogOut />
+          </figure>
+          {isExpanded && <span>Sair da plataforma</span>}
+        </Button>
       </div>
     </aside>
   );

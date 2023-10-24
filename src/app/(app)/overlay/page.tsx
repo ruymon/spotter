@@ -3,18 +3,40 @@
 import { OverlayBrandClock } from "@/components/overlay/OverlayBrandClock";
 import { OverlayHeader } from "@/components/overlay/OverlayHeader";
 import { OverlayStatistics } from "@/components/overlay/OverlayStatistics";
+import { Overlay } from "@/types";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
-// bg-[url('https://images.unsplash.com/photo-1485727511593-8c9f45ea2a06?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-no-repeat
+const defaultOverlay: Overlay = {
+  title: "Evento sem título",
+  subtitle: "Evento sem subtítulo",
+  locationIcao: "sbgr",
+  label: "evento",
+  isPreview: false,
+}
+
+
+function getOverlayParams(searchParams: URLSearchParams) {
+  const overlay: Overlay = {
+    title: searchParams.get("title") ?? defaultOverlay.title,
+    subtitle: searchParams.get("subtitle") ?? defaultOverlay.subtitle,
+    locationIcao: searchParams.get("locationIcao") ?? defaultOverlay.locationIcao,
+    label: searchParams.get("label") ?? defaultOverlay.label,
+    isPreview: searchParams.get("preview") === "true" ?? defaultOverlay.isPreview,
+  };
+
+  return overlay;
+}
 
 export default function DashboardPage() {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
+  const [overlayData] = useState<Overlay>(getOverlayParams(searchParams));
 
   return (
     <main className="relative p-4 w-screen h-screen flex flex-col justify-between overflow-hidden">
       <section className="flex flex-col gap-4">
         <OverlayBrandClock />
-        <OverlayHeader title="24 hours of Vatsim" subtitle="Serviço ATC no mundo inteiro para o grande evento com duração de 24 horas!" />
+        <OverlayHeader label={overlayData.label} title={overlayData.title} subtitle={overlayData.subtitle} />
         <OverlayStatistics />
       </section>
 
