@@ -26,6 +26,7 @@ function getOverlayParams(searchParams: URLSearchParams) {
   return overlay;
 }
 
+
 export default function DashboardPage() {
   const searchParams = useSearchParams();
   const overlayData = getOverlayParams(searchParams);

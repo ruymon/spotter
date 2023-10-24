@@ -1,10 +1,30 @@
-import { Input } from "@/components/ui/input";
+"use client";
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { getAirportsNames } from "@/services/fetchAirports";
+import { useEffect, useState } from "react";
 import { FormItemHeader } from "./FormItemHeader";
 import { FormStepHeader } from "./FormStepHeader";
 
 interface LocationDetailsStepProps {};
 
+type AirportName = {
+  icao: string;
+  name: string;
+  city: string;
+}
+
 export function LocationDetailsStep({}: LocationDetailsStepProps) {
+  const [airportsNames, setAirportsNames] = useState<AirportName[]>([]);
+
+  useEffect(() => {
+    getAirportsNames().then(setAirportsNames);
+  }, []);
+
+  console.log(airportsNames);
+
+
+
   return (
     <>
       <FormStepHeader title="Aeródromos e localidades" description="Escolha as localidades para exibir" />
@@ -16,10 +36,20 @@ export function LocationDetailsStep({}: LocationDetailsStepProps) {
             description="Código ICAO do aeródromo, com base no código ICAO, o sistema irá exibir as informações do aeródromo ou localidade (METAR / TAF)."
           />
 
-          <Input
-            type="text"
-            placeholder="Código ICAO"
-          />
+          <Select>
+            <SelectTrigger>
+              <SelectValue placeholder="Selecione o aeródromo" />
+            </SelectTrigger>
+            <SelectContent>
+              {
+                airportsNames.map((airport: AirportName) => (
+                  <SelectItem key={airport.icao} value={airport.icao}>
+                    {airport.name}
+                  </SelectItem>
+                ))
+              }
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </>
