@@ -9,7 +9,7 @@ interface OverlayStatisticsProps {
 
 export function OverlayStatistics({}: OverlayStatisticsProps) {
   return (
-    <div className="rounded-xl bg-gray-900/75 backdrop-blur max-w-sm text-secondary flex flex-col gap-6 p-6">
+    <div className="rounded-xl bg-gray-900/75 backdrop-blur max-w-sm flex flex-col gap-6 p-6">
       <header className="flex flex-col gap-5">
         <OverlayHat label="Informações" variant="info" />
 
