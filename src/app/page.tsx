@@ -59,8 +59,8 @@ export default function HomePage() {
       </MaxWidthWrapper>
 
       <figure className="top-1/2 -translate-y-[50%] absolute flex items-center justify-between w-full px-40">
-        <div className="w-80 aspect-square rounded-full blur-[200px] p-1 bg-gradient-to-r from-green-600 to-teal-600" />
-        <div className="w-80 aspect-square rounded-full blur-[200px] p-1 bg-gradient-to-l from-sky-600 to-blue-600" />
+        <div className="w-80 aspect-square rounded-full blur-[200px] p-1 bg-violet-300 dark:bg-violet-900/50" />
+        <div className="w-80 aspect-square rounded-full blur-[200px] p-1 bg-violet-400 dark:bg-violet-900/50" />
       </figure>
     </main>
   )
