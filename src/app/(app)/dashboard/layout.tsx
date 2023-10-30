@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div className="flex w-full min-h-screen">
       <SidebarNav />
-      <main className="flex-1 bg-card">
+      <main className="flex-1">
         {children}
       </main>
     </div>

@@ -26,8 +26,8 @@ export function MultiStep({ size, currentStep = 1, isZeroBased }: MultiStepProps
             <div
               key={step}
               className={cn(
-                "rounded-sm h-1 bg-muted-foreground data-[active]:bg-primary",
-                currentStep >= step ? "bg-primary" : "bg-muted"
+                "rounded-sm h-1",
+                currentStep >= step ? "bg-primary" : "bg-primary-foreground"
               )}
             />
           )
