@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
 
   if (airportQuery) {
     const filteredAirports = airports.filter((airport) => {
-      return airport.label.toLowerCase().includes(airportQuery.toLowerCase());
+      return airport.label.toLowerCase().includes(airportQuery.toLowerCase()) || airport.icao.toLowerCase().includes(airportQuery.toLowerCase());
     });
 
     return NextResponse.json({

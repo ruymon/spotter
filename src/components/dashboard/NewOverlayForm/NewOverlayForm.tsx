@@ -1,76 +1,72 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
+import { create } from 'zustand';
 import { MultiStep } from "../MultiStep";
-import { EventDetailsStep } from "./steps/EventDetailsStep";
+import { EventDetails, EventDetailsStep } from "./steps/EventDetailsStep";
 import { FinishedStep } from "./steps/FinishedStep";
-import { LocationDetailsStep } from "./steps/LocationDetailsStep";
-import { OverlaySettingsStep } from "./steps/OverlaySettingsStep";
+import { LocationDetails, LocationDetailsStep } from "./steps/LocationDetailsStep";
+import { OverlaySettings, OverlaySettingsStep } from "./steps/OverlaySettingsStep";
 import { PreviewStep } from "./steps/PreviewStep";
-
-
-type NewOverlayFormItems = {
-  title: string;
-  subtitle: string;
-  aerodromes: string[];
-  hideTitle: boolean;
-  hideSubtitle: boolean;
-  fetchLocaleMetar: boolean;
-  fetchLocaleInboundFlights: boolean;
-  fetchLocaleOutboundFlights: boolean;
-};
-
-export const NEW_OVERLAY_DEFAULT_FORM_VALUES: NewOverlayFormItems = {
-  title: "",
-  subtitle: "",
-  aerodromes: [],
-  hideTitle: false,
-  hideSubtitle: false,
-  fetchLocaleMetar: true,
-  fetchLocaleInboundFlights: true,
-  fetchLocaleOutboundFlights: true,
-};
 
 const FORM_STEPS_COUNT = 5;
 
-function CurrentFormStepComponent(props: { currentFormStep: number, onPreviousStep: () => void, onNextStep: () => void }) {
-  const NEW_OVERLAY_DEFAULT_FORM_STEPS: { [key: number]: ReactNode } = {
-    0: <EventDetailsStep {...props}  />,
-    1: <LocationDetailsStep {...props} />,
-    2: <OverlaySettingsStep {...props} />,
-    3: <PreviewStep {...props} />,
-    4: <FinishedStep {...props} />,
-  };
+const newOverlayFormSteps: { [key: number]: ReactNode } = {
+  0: <EventDetailsStep  />,
+  1: <LocationDetailsStep />,
+  2: <OverlaySettingsStep />,
+  3: <PreviewStep />,
+  4: <FinishedStep />,
+};
 
-  return NEW_OVERLAY_DEFAULT_FORM_STEPS[props.currentFormStep];
+export type NewOverlayFormData = {
+  eventDetails: EventDetails,
+  locationDetails: LocationDetails,
+  overlaySettings: OverlaySettings
 }
 
+type NewOverlayFormContext = {
+  currentFormStep: number, 
+  onPreviousStep: () => void, 
+  onNextStep: () => void,
+  data: NewOverlayFormData,
+  setData: (data: NewOverlayFormData) => void;
+};
 
-interface NewOverlayFormProps {};
+export const useNewOverlayFormContext = create<NewOverlayFormContext>(
+  set => ({
+    currentFormStep: 0,
+    onNextStep: () => set(state => ({ currentFormStep: state.currentFormStep + 1 })),
+    onPreviousStep: () => set(state => ({ currentFormStep: state.currentFormStep - 1 })),
+    data: {
+      eventDetails: {
+        label: "",
+        title: "",
+        subtitle: "",
+      },
+      locationDetails: {
+        icao: "",
+        label: "",
+      },
+      overlaySettings: {
+        showZuluTime: true,
+        showLocalTime: true,
+        showMetar: true,
+        showInboundFlightsCount: true,
+        showOutboundFlightsCount: true,
+      },
+    },
+    setData: (data: NewOverlayFormData) => set(state => ({ data })),
+  })
+);
 
-export function NewOverlayForm({}: NewOverlayFormProps) {
-  const [currentFormStep, setCurrentFormStep] = useState(0);
-
-  function handleNextStep() {
-    if (currentFormStep === FORM_STEPS_COUNT - 1) {
-      return;
-    }
-
-    setCurrentFormStep(currentFormStep + 1);
-  }
-
-  function handlePreviousStep() {
-    if (currentFormStep === 0) {
-      return;
-    }
-
-    setCurrentFormStep(currentFormStep - 1);
-  }
+export function NewOverlayForm() {
+  const { currentFormStep } = useNewOverlayFormContext();
 
   return (
     <div className="flex flex-col gap-10 flex-1">
       <MultiStep size={FORM_STEPS_COUNT} currentStep={currentFormStep} isZeroBased />
-      <CurrentFormStepComponent currentFormStep={currentFormStep} onPreviousStep={handlePreviousStep} onNextStep={handleNextStep} />
+      {newOverlayFormSteps[currentFormStep]}
     </div >
   );
 };

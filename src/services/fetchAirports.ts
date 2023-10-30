@@ -14,7 +14,7 @@ function sanitizeAirportsObjectToNameArray(airports: Airport[]) {
   const airportsArr = Object.keys(airports).map((icao) => {
     return {
       icao: airports[icao as any].icao,
-      label: `${icao} - ${airports[icao as any].name} - ${airports[icao as any].city}`,
+      label: `${airports[icao as any].name} · ${airports[icao as any].city}`,
     };
   });
 

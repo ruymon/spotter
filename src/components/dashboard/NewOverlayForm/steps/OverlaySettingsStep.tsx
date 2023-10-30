@@ -1,22 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Switch } from "@/components/ui/switch";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { FormItemHeader } from "../FormItemHeader";
+import { FormStepFooter } from "../FormStepFooter";
 import { FormStepHeader } from "../FormStepHeader";
-
-
-
-interface OverlaySettingsStepProps {
-  currentFormStep: number;
-  onPreviousStep: () => void;
-  onNextStep: () => void;
-};
+import { useNewOverlayFormContext } from "../NewOverlayForm";
 
 const overlaySettingsFormSchema = z.object({
   showZuluTime: z.boolean(),
@@ -26,8 +18,11 @@ const overlaySettingsFormSchema = z.object({
   showOutboundFlightsCount: z.boolean(),
 })
 
+export type OverlaySettings = z.infer<typeof overlaySettingsFormSchema>;
 
-export function OverlaySettingsStep({ currentFormStep, onNextStep, onPreviousStep }: OverlaySettingsStepProps) {
+export function OverlaySettingsStep() {
+  const { onNextStep, data, setData } = useNewOverlayFormContext();
+
   const overlaySettingsForm = useForm<z.infer<typeof overlaySettingsFormSchema>>({
     resolver: zodResolver(overlaySettingsFormSchema),
     defaultValues: {
@@ -40,7 +35,10 @@ export function OverlaySettingsStep({ currentFormStep, onNextStep, onPreviousSte
   })
 
   function onSubmit(values: z.infer<typeof overlaySettingsFormSchema>) {
-    console.log(values)
+    setData({
+      ...data,
+      overlaySettings: values,
+    });
     onNextStep()
   }
 
@@ -158,26 +156,7 @@ export function OverlaySettingsStep({ currentFormStep, onNextStep, onPreviousSte
           </div>
 
 
-          <div className="flex w-full items-end justify-between">
-            <Button
-              variant="ghost"
-              disabled={currentFormStep === 0}
-              className="flex items-center gap-2 text-muted-foreground"
-              onClick={onPreviousStep}
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Voltar etapa</span>
-            </Button>
-
-            <Button
-              variant="ghost"
-              type="submit"
-              className="flex items-center gap-2 text-muted-foreground"
-            >
-              <span>Próxima etapa</span>
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </div>
+          <FormStepFooter />
         </form>
       </Form>
     </div>

@@ -2,7 +2,9 @@ import { VatsimBrasilLogo } from "../VatsimBrasilLogo";
 import { VatsimBrasilLogoStars } from "../VatsimBrasilLogoStars";
 import { OverlayClock } from "./OverlayClock";
 
-interface OverlayBrandClockProps {};
+interface OverlayBrandClockProps {
+  
+};
 
 export function OverlayBrandClock({}: OverlayBrandClockProps) {
   return (

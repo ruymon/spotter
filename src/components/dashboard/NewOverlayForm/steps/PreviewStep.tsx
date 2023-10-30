@@ -1,22 +1,25 @@
 import { BrowserWindow } from "@/components/BrowserWindow";
 import { Button } from "@/components/ui/button";
+import { generateOverlayUrl } from "@/services/generateOverlay";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { FormStepHeader } from "../FormStepHeader";
+import { useNewOverlayFormContext } from "../NewOverlayForm";
 
-interface PreviewStepProps {
-  currentFormStep: number;
-  onPreviousStep: () => void;
-  onNextStep: () => void;
-};
+export function PreviewStep() {
+  const { currentFormStep, onNextStep, onPreviousStep, data } = useNewOverlayFormContext();
 
-export function PreviewStep({ currentFormStep, onNextStep, onPreviousStep }: PreviewStepProps) {
+  const overlayUrl = generateOverlayUrl(data);
+
+  console.log(overlayUrl);
+
   return (
     <div className="flex flex-col gap-10 flex-1 justify-between">
       <FormStepHeader title="Pré-visualização" description="Consulte uma prévia, antes de finalizá-lo." />
 
-
       <BrowserWindow className="max-w-3xl self-center">
-        <iframe className="w-full h-full rounded-sm" src="https://spotter-two.vercel.app/overlay?title=Nareba%20%C3%A9%20amigo&subtitle=Servi%C3%A7o%20ATC%20no%20mundo%20inteiro%20para%20o%20grande%20evento%20com%20dura%C3%A7%C3%A3o%20de%2024%20horas!&locationIcao=sbgr&label=evento" />
+        <div className="justify-center items-center flex w-full h-full">
+          <span>Algum preview que ainda não existe.</span>
+        </div>
       </BrowserWindow>
 
 

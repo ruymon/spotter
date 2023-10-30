@@ -1,24 +1,17 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { BetaBanner } from "@/components/BetaBanner";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertTriangle, ArrowLeft, ArrowRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { AirportsSearchInput } from "../AirportsSearchInput";
 import { FormItemHeader } from "../FormItemHeader";
+import { FormStepFooter } from "../FormStepFooter";
 import { FormStepHeader } from "../FormStepHeader";
-import { BetaBanner } from "@/components/BetaBanner";
+import { useNewOverlayFormContext } from "../NewOverlayForm";
 
-
-interface LocationDetailsStepProps {
-  currentFormStep: number;
-  onPreviousStep: () => void;
-  onNextStep: () => void;
-};
-
-const eventLocationFormSchema = z.object({
+const locationDetailsFormSchema = z.object({
   locationIcao: z.object({
     icao: z.string().min(2, {
       message: "Aeródromo deve ser escolhido da lista.",
@@ -31,13 +24,23 @@ const eventLocationFormSchema = z.object({
   }),
 })
 
-export function LocationDetailsStep({ currentFormStep, onNextStep, onPreviousStep }: LocationDetailsStepProps) {
-  const eventLocationForm = useForm<z.infer<typeof eventLocationFormSchema>>({
-    resolver: zodResolver(eventLocationFormSchema),
+export type LocationDetails = {
+  icao: string,
+  label: string,
+};
+
+export function LocationDetailsStep() {
+  const { onNextStep, data, setData } = useNewOverlayFormContext();
+
+  const eventLocationForm = useForm<z.infer<typeof locationDetailsFormSchema>>({
+    resolver: zodResolver(locationDetailsFormSchema),
   })
 
-  function onSubmit(values: z.infer<typeof eventLocationFormSchema>) {
-    console.log(values.locationIcao.icao)
+  function onSubmit(values: z.infer<typeof locationDetailsFormSchema>) {
+    setData({
+      ...data,
+      locationDetails: values.locationIcao,
+    });
     onNextStep()
   }
 
@@ -69,28 +72,7 @@ export function LocationDetailsStep({ currentFormStep, onNextStep, onPreviousSte
             />
           </div>
 
-
-
-          <div className="flex w-full items-end justify-between">
-            <Button
-              variant="ghost"
-              disabled={currentFormStep === 0}
-              className="flex items-center gap-2 text-muted-foreground"
-              onClick={onPreviousStep}
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Voltar etapa</span>
-            </Button>
-
-            <Button
-              variant="ghost"
-              type="submit"
-              className="flex items-center gap-2 text-muted-foreground"
-            >
-              <span>Próxima etapa</span>
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </div>
+          <FormStepFooter />
         </form>
       </Form>
     </div>

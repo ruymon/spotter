@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { generateOverlayUrl } from "@/services/generateOverlay";
 import { Copy, PartyPopper } from "lucide-react";
+import { useNewOverlayFormContext } from "../NewOverlayForm";
 
-interface FinishedStepProps {
-  currentFormStep: number;
-  onPreviousStep: () => void;
-  onNextStep: () => void;
-};
+export function FinishedStep() {
+  const { data } = useNewOverlayFormContext();
+  const overlayUrl = generateOverlayUrl(data);
 
-export function FinishedStep({ currentFormStep }: FinishedStepProps) {
   return (
     <div className="flex flex-col gap-24 flex-1 justify-center items-center">
       <section className="flex flex-col gap-12 items-center max-w-md text-center">
@@ -25,17 +24,17 @@ export function FinishedStep({ currentFormStep }: FinishedStepProps) {
 
         <div className="flex flex-col gap-4 w-full items-center">
           <Button className="dark:font-semibold flex items-center gap-3 w-full" size="lg">
-            <Copy className="shrink-0 w-4"/>
+            <Copy className="shrink-0 w-4" />
             <span>Copiar URL do Overlay</span>
           </Button>
 
           <div className="text-sm flex items-center text-muted-foreground w-full gap-4">
-            <div className="w-full h-0.5 bg-border"/>
+            <div className="w-full h-[1px] bg-border" />
             <span>ou</span>
-            <div className="w-full h-0.5 bg-border"/>
+            <div className="w-full h-[1px] bg-border" />
           </div>
 
-          <Button variant="secondary" className="text-muted-foreground w-full">Voltar ao dashboard</Button>
+          <Button variant="outline" className="text-muted-foreground w-full">Voltar ao dashboard</Button>
         </div>
 
 
