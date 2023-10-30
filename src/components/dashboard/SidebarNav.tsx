@@ -55,7 +55,7 @@ export function SidebarNav({}: SidebarNavProps) {
   const { theme, setTheme } = useTheme();
 
   return (
-    <aside className={cn("bg-primary-foreground flex flex-col gap-5 w-80 h-screen sticky top-0 px-4 py-8", isExpanded ? 'w-80' : 'w-16 items-center')}>
+    <aside className={cn("flex flex-col gap-5 w-80 h-screen sticky top-0 px-4 py-8", isExpanded ? 'w-80' : 'w-16 items-center')}>
       <div className="flex flex-col gap-6 px-4" >
         {isExpanded ? <Logo /> : <Aperture className="w-7 text-primary shrink-0" />}
         <Separator className="w-full" />

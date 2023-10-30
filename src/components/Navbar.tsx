@@ -7,7 +7,7 @@ interface NavbarProps {};
 
 export function Navbar({}: NavbarProps) {
   return (
-    <nav className="flex items-center justify-between py-4 w-full border-b border-border">
+    <nav className="flex items-center justify-between py-4 w-full border-b border-border sticky top-0 z-20 bg-transparent backdrop-blur-xl">
       <Link href='/'>
         <Logo />
       </Link>

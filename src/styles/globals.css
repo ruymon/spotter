@@ -4,58 +4,90 @@
 
 @layer base {
   :root {
-    --background: #FAFAFF; /* to test */
-    --foreground: #21212E; /* to test */
+    --background: #fff;
+    --foreground: #000;
 
-    --card: #ffffff;
-    --card-foreground: #2C2D3C; /* to test */
+    --card: #eaeaea;
+    --card-foreground: #444;
 
     --popover: #ffffff;
-    --popover-foreground: #2C2D3C; /* to test */
+    --popover-foreground: #eaeaea;
 
-    --primary: #8467F3; /* ok */
-    --primary-foreground: #FAFAFF; /* ok */
+    --primary: #222;
+    --primary-foreground: #eaeaea;
 
-    --secondary: #e6e9ef; /* ok */
-    --secondary-foreground: #4c4f69; /* ok */
+    --secondary: #fafafa;
+    --secondary-foreground: #222;
 
-    --muted: #f1f3f7; /* ok */
-    --muted-foreground: #6c6f85; /* ok */
+    --muted: #eaeaea;
+    --muted-foreground: #666;
 
-    --accent: #e6e9ef; /* ok */
-    --accent-foreground: #5c5f77; /* ok */
+    --accent: #eaeaea;
+    --accent-foreground: #444;
 
-    --destructive: #d20f39; /* ok */
-    --destructive-foreground: #fafbff; /* ok */
+    --destructive: #e00;
+    --destructive-foreground: #f7d4d6;
 
-    --border: #eceff4; /* ok */
-    --input: #eceff4; /* ok */
-    --ring: #eceff4; /* ok */
+    --border: #eaeaea;
+    --input: #eaeaea;
+    --ring: #999;
 
-    --radius: 0.5rem; /* ok */
+    --radius: 0.5rem;
   }
 
-  .dark {
-    --background: #181825; /* ok */
+  .purple-light {
+    --background: #FAFAFF;
+    --foreground: #21212E;
+
+    --card: #ffffff;
+    --card-foreground: #2C2D3C;
+
+    --popover: #ffffff;
+    --popover-foreground: #2C2D3C;
+
+    --primary: #8467F3; 
+    --primary-foreground: #FAFAFF; 
+
+    --secondary: #e6e9ef; 
+    --secondary-foreground: #4c4f69; 
+
+    --muted: #f1f3f7; 
+    --muted-foreground: #6c6f85; 
+
+    --accent: #e6e9ef; 
+    --accent-foreground: #5c5f77; 
+
+    --destructive: #d20f39; 
+    --destructive-foreground: #fafbff; 
+
+    --border: #eceff4; 
+    --input: #eceff4; 
+    --ring: #eceff4; 
+
+    --radius: 0.5rem; 
+  }
+
+  .blueish {
+    --background: #181825; 
     --foreground: #f9fafb;
 
-    --card: #181825; /* to be tested */
+    --card: #181825;
     --card-foreground: #f9fafb;
 
-    --popover: #181825; /* to be tested */
+    --popover: #181825;
     --popover-foreground: #f9fafb;
 
     --primary: #8467F3;
     --primary-foreground: #181825;
 
-    --secondary: #cdd6f4; /* ok */
+    --secondary: #cdd6f4; 
     --secondary-foreground: #ccd0da;
 
-    --muted: #1e1e2e; /* ok */
-    --muted-foreground: #9ca3af; /* ok */
+    --muted: #1e1e2e; 
+    --muted-foreground: #9ca3af; 
 
-    --accent: #1e1e2e; /* ok */
-    --accent-foreground: #ced2e2; /* ok */
+    --accent: #1e1e2e; 
+    --accent-foreground: #ced2e2; 
 
     --destructive: #f38ba8;
     --destructive-foreground: #f9fafb;
@@ -64,17 +96,17 @@
     --input: #1e1e2e;
     --ring: #1e1e2e;
 
-    --radius: 0.5rem; /* ok */
+    --radius: 0.5rem; 
   }
 
   .darker {
-    --background: #111111; /* ok */
+    --background: #111111; 
     --foreground: #E0E1EC;
 
-    --card: #111111; /* to be tested */
+    --card: #111111;
     --card-foreground: #f9fafb;
 
-    --popover: #1A1A1A; /* to be tested */
+    --popover: #1A1A1A;
     --popover-foreground: #f9fafb;
 
     --primary: #8467F3;
@@ -98,11 +130,43 @@
 
     --radius: 0.5rem; /* ok */
   }
+
+  .dark {
+    --background: #000; 
+    --foreground: #fff;
+
+    --card: #111;
+    --card-foreground: #999;
+
+    --popover: #111;
+    --popover-foreground: #f9fafb;
+
+    --primary: #eaeaea;
+    --primary-foreground: #111;
+
+    --secondary: #111;
+    --secondary-foreground: #eaeaea;
+
+    --muted: #111; 
+    --muted-foreground: #888; 
+
+    --accent: #111; 
+    --accent-foreground: #999; 
+
+    --destructive: #e60000;
+    --destructive-foreground: #f7d4d6;
+
+    --border: #111;
+    --input: #111;
+    --ring: #333;
+
+    --radius: 0.5rem; 
+  }
 }
 
 @layer base {
   * {
-    @apply border-border selection:bg-primary-foreground selection:text-primary;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;

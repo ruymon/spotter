@@ -15,27 +15,27 @@ export default function DashboardPage() {
         </div>
 
         <div className="flex items-center gap-6 w-full flex-wrap">
-          <div className="aspect-[10/12] w-32 rounded-md bg-muted flex-col text-muted-foreground p-5 flex justify-between">
+          <div className="aspect-[10/12] w-32 rounded-md bg-card flex-col text-card-foreground p-5 flex justify-between">
             <Plus className="h-6 w-6" />
             <span className="text-sm font-medium">Criar novo overlay</span>
           </div>
 
-          <div className="aspect-[10/12] w-32 rounded-md bg-muted flex-col text-muted-foreground p-5 flex justify-between">
+          <div className="aspect-[10/12] w-32 rounded-md bg-card flex-col text-card-foreground p-5 flex justify-between">
             <Plus className="h-6 w-6" />
             <span className="text-sm font-medium">Criar novo overlay</span>
           </div>
 
-          <div className="aspect-[10/12] w-32 rounded-md bg-muted flex-col text-muted-foreground p-5 flex justify-between">
+          <div className="aspect-[10/12] w-32 rounded-md bg-card flex-col text-card-foreground p-5 flex justify-between">
             <Plus className="h-6 w-6" />
             <span className="text-sm font-medium">Criar novo overlay</span>
           </div>
 
-          <div className="aspect-[10/12] w-32 rounded-md bg-muted flex-col text-muted-foreground p-5 flex justify-between">
+          <div className="aspect-[10/12] w-32 rounded-md bg-card flex-col text-card-foreground p-5 flex justify-between">
             <Plus className="h-6 w-6" />
             <span className="text-sm font-medium">Criar novo overlay</span>
           </div>
 
-          <div className="aspect-[10/12] w-32 rounded-md bg-muted flex-col text-muted-foreground p-5 flex justify-between">
+          <div className="aspect-[10/12] w-32 rounded-md bg-card flex-col text-card-foreground p-5 flex justify-between">
             <Plus className="h-6 w-6" />
             <span className="text-sm font-medium">Criar novo overlay</span>
           </div>

@@ -1,29 +1,28 @@
+import { Airport } from "@/types";
+
 const AIRPORTS_API_BASE_URL = "https://raw.githubusercontent.com/mwgg/Airports/master/airports.json";
 
 export async function fetchAirports() {
-  const response = await fetch(AIRPORTS_API_BASE_URL);
-  const airports = await response.json();
-  return airports;  
+  const response = await fetch(AIRPORTS_API_BASE_URL, {
+    cache: "no-cache"
+  });
+  const airports: Airport[] = await response.json();
+  return airports;
 }
 
-export async function getAirportsNames() {
-  const airports = await fetchAirports();
-  const airportsArr = Object.keys(airports).map((key) => {
-    const airport = airports[key];
-
+function sanitizeAirportsObjectToNameArray(airports: Airport[]) {
+  const airportsArr = Object.keys(airports).map((icao) => {
     return {
-      icao: key,
-      name: airport.name,
-      city: airport.city,
+      icao: airports[icao as any].icao,
+      label: `${icao} - ${airports[icao as any].name} - ${airports[icao as any].city}`,
     };
   });
 
   return airportsArr;
 }
 
-export async function getAirportByIcao(icao: string) {
+export async function getAirportsNames() {
   const airports = await fetchAirports();
-  const airport = airports[icao];
-
-  return airport;
+  const airportsArr = sanitizeAirportsObjectToNameArray(airports);
+  return airportsArr;
 }
