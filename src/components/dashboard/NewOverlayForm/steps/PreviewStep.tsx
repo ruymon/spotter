@@ -1,17 +1,12 @@
 import { BrowserWindow } from "@/components/BrowserWindow";
 import { Button } from "@/components/ui/button";
-import { generateOverlayUrl } from "@/services/generateOverlay";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { FormStepHeader } from "../FormStepHeader";
 import { useNewOverlayFormContext } from "../NewOverlayForm";
 
 export function PreviewStep() {
-  const { currentFormStep, onNextStep, onPreviousStep, data } = useNewOverlayFormContext();
-
-  const overlayUrl = generateOverlayUrl(data);
-
-  console.log(overlayUrl);
-
+  const { currentFormStep, onNextStep, onPreviousStep } = useNewOverlayFormContext();
+  
   return (
     <div className="flex flex-col gap-10 flex-1 justify-between">
       <FormStepHeader title="Pré-visualização" description="Consulte uma prévia, antes de finalizá-lo." />

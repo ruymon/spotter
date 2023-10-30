@@ -1,11 +1,38 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { generateOverlayUrl } from "@/services/generateOverlay";
-import { Copy, PartyPopper } from "lucide-react";
+import { Check, Copy, PartyPopper } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useNewOverlayFormContext } from "../NewOverlayForm";
+
+const COPIED_TIMEOUT = 1000; // 1s in ms
 
 export function FinishedStep() {
   const { data } = useNewOverlayFormContext();
+  const [value, copy] = useCopyToClipboard();
+  const [copied, setCopied] = useState(false);
   const overlayUrl = generateOverlayUrl(data);
+
+  useEffect(() => {
+    if (copied) {
+      const timer = setTimeout(() => {
+        setCopied(false);
+      }, COPIED_TIMEOUT)
+
+      return () => {
+        clearTimeout(timer)
+      }
+    }
+  }, [copied]);
+
+
+  function handleCopyUrl() {
+    copy(overlayUrl);
+    setCopied(true);
+  }
+
 
   return (
     <div className="flex flex-col gap-24 flex-1 justify-center items-center">
@@ -23,9 +50,13 @@ export function FinishedStep() {
         </div>
 
         <div className="flex flex-col gap-4 w-full items-center">
-          <Button className="dark:font-semibold flex items-center gap-3 w-full" size="lg">
-            <Copy className="shrink-0 w-4" />
-            <span>Copiar URL do Overlay</span>
+          <Button
+            onClick={handleCopyUrl}
+            data-copied={copied}
+            className="dark:font-semibold flex items-center gap-3 w-full data-[copied=true]:bg-green-600 data-[copied=true]:text-white" size="lg"
+          >
+            { copied === true ? <Check className="shrink-0 w-4" /> : <Copy className="shrink-0 w-4" /> }
+            { copied === true ?  <span>Copiado!</span> : <span>Copiar URL do Overlay</span> }
           </Button>
 
           <div className="text-sm flex items-center text-muted-foreground w-full gap-4">
@@ -36,8 +67,6 @@ export function FinishedStep() {
 
           <Button variant="outline" className="text-muted-foreground w-full">Voltar ao dashboard</Button>
         </div>
-
-
 
         <span className="text-xs text-muted-foreground leading-relaxed w-3/4">Fique tranquilo: essa configuração já está salva nos seus overlays e você poderá reutilizá-la a qualquer momento.</span>
       </section>
