@@ -53,7 +53,7 @@ export function FinishedStep() {
           <Button
             onClick={handleCopyUrl}
             data-copied={copied}
-            className="dark:font-semibold flex items-center gap-3 w-full data-[copied=true]:bg-green-600 data-[copied=true]:text-white" size="lg"
+            className="dark:font-semibold flex items-center gap-3 w-full data-[copied=true]:bg-green-600 data-[copied=true]:text-white transition-all" size="lg"
           >
             { copied === true ? <Check className="shrink-0 w-4" /> : <Copy className="shrink-0 w-4" /> }
             { copied === true ?  <span>Copiado!</span> : <span>Copiar URL do Overlay</span> }

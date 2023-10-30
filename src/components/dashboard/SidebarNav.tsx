@@ -26,7 +26,7 @@ const SidebarNavItems: ISidebarNavItem[] = [
     external: false
   },
   {
-    href: `/dashboard`,
+    href: `/dashboard/history`,
     title: `Histórico`,
     icon: <History />,
     disabled: false,
@@ -36,14 +36,14 @@ const SidebarNavItems: ISidebarNavItem[] = [
     href: `/dashboard`,
     title: `Modelos salvos`,
     icon: <Star />,
-    disabled: false,
+    disabled: true,
     external: false
   },
   {
     href: `/dashboard`,
     title: `Configurações`,
     icon: <SlidersHorizontal />,
-    disabled: false,
+    disabled: true,
     external: false
   }
 ]
