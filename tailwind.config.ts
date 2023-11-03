@@ -26,6 +26,7 @@ export default {
     'text-orange-400',
     'bg-rose-400',
     'text-rose-400',
+    'bg-background',
   ],
   theme: {
     container: {

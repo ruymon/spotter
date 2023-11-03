@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 
 export type NavItem = {
   id: number;
@@ -27,6 +28,7 @@ export type SiteConfig = {
 
 export type FeaturesConfig = {
   id: number;
+  glyph: ReactNode;
   title: string;
   description: string;
 }[];
