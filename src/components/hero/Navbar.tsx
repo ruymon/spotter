@@ -1,5 +1,6 @@
 import { navbarConfig } from "@/config/navbar";
 import Link from "next/link";
+import { AuthButton } from "../auth/AuthButton";
 import { Logo } from "../logo";
 import { MaxWidthWrapper } from "./MaxWidthWrapper";
 import { NavbarItem } from "./NavbarItem";
@@ -22,12 +23,7 @@ export function Navbar({}: NavbarProps) {
 
         <div className="flex items-center gap-1">
           <ThemeSwitcher />
-
-          <Link
-            className="text-sm font-medium py-1.5 px-3 rounded hover:bg-primary-foreground hover:text-primary transition-colors text-muted-foreground"
-            href='/dashboard'>
-            Dashboard
-          </Link>
+          <AuthButton />
         </div>
       </MaxWidthWrapper>
     </nav>

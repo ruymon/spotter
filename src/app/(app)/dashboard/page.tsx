@@ -1,10 +1,19 @@
+import { createClient } from '@/lib/database/server';
 import { Plus } from "lucide-react";
+import { cookies } from "next/headers";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
   return (
     <div className="p-16 max-w-5xl mx-auto flex flex-col gap-16">
       <header className="flex flex-col gap-2 w-full">
-        <h1 className="text-3xl font-bold text-secondary-foreground">Olá, Ruy Monteiro!</h1>
+        <h1 className="text-3xl font-bold text-secondary-foreground">Olá, {user?.email}!</h1>
         <span className="max-w-prose text-muted-foreground sm:text-lg">Seja bem vindo ao seu dashboard.</span>
       </header>
 

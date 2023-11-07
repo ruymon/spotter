@@ -2,7 +2,6 @@ import { BrowserWindow } from "@/components/BrowserWindow";
 import { FeatureCard } from "@/components/hero/FeatureCard";
 import { MaxWidthWrapper } from "@/components/hero/MaxWidthWrapper";
 import { Navbar } from "@/components/hero/Navbar";
-
 import { buttonVariants } from "@/components/ui/button";
 import { featuresConfig } from "@/config/features";
 import { siteConfig } from "@/config/site";

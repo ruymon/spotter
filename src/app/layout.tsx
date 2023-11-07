@@ -6,6 +6,10 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
+const defaultUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : 'http://localhost:3000'
+
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -82,6 +86,7 @@ interface RootLayoutProps {
 }
 
 export const metadata = {
+  metadataBase: new URL(defaultUrl),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
