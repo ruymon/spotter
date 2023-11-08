@@ -3,12 +3,9 @@ import localFont from "next/font/local";
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { siteConfig } from "@/config/site";
+import { DEFAULT_URL } from "@/constants/url";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
-
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000'
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -86,7 +83,7 @@ interface RootLayoutProps {
 }
 
 export const metadata = {
-  metadataBase: new URL(defaultUrl),
+  metadataBase: new URL(DEFAULT_URL),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
