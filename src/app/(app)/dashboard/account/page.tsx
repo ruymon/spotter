@@ -1,12 +1,12 @@
 import AccountForm from "@/components/dashboard/Account";
-import { createClient } from "@/lib/database/server";
+import { createSupabaseServerClient } from "@/lib/database/server";
 import { cookies } from "next/headers";
 
 interface AccountPageProps {};
 
 export default async function AccountPage({}: AccountPageProps) {
   const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createSupabaseServerClient(cookieStore)
 
   const {
     data: { session },

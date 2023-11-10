@@ -1,10 +1,10 @@
-import { createClient } from '@/lib/database/server';
+import { createSupabaseServerClient } from '@/lib/database/server';
 import { Plus } from "lucide-react";
 import { cookies } from "next/headers";
 
 export default async function DashboardPage() {
   const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createSupabaseServerClient(cookieStore)
 
   const { data: { user } } = await supabase.auth.getUser()
 

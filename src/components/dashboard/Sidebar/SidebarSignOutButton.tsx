@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { createClient } from "@/lib/database/server";
+import { createSupabaseServerClient } from "@/lib/database/server";
 import { LogOut } from "lucide-react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -11,7 +11,7 @@ export function SidebarSignOutButton({}: SidebarSignOutButtonProps) {
     'use server'
 
     const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const supabase = createSupabaseServerClient(cookieStore)
     await supabase.auth.signOut()
     return redirect('/auth/login')
   }

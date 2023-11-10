@@ -1,6 +1,6 @@
 'use client'
 
-import { createClient } from '@/lib/database/client'
+import { createSupabaseClient } from '@/lib/database/client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Session } from '@supabase/supabase-js'
 import { useState } from 'react'
@@ -64,7 +64,7 @@ type Account = z.infer<typeof accountFormSchema>;
 
 export default function AccountForm({ session }: { session: Session | null }) {
   const [isLoading, setIsLoading] = useState(true)
-  const supabase = createClient()
+  const supabase = createSupabaseClient()
   const user = session?.user;
 
   const accountForm = useForm<Account>({

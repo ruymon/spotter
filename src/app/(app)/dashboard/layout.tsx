@@ -1,7 +1,6 @@
-
 import { SidebarNav } from "@/components/dashboard/Sidebar/SidebarNav";
 import { SidebarSignOutButton } from "@/components/dashboard/Sidebar/SidebarSignOutButton";
-import { createClient } from "@/lib/database/server";
+import { createSupabaseServerClient } from "@/lib/database/server";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { type ReactNode } from "react";
@@ -12,7 +11,7 @@ interface DashboardLayoutProps {
 
 export default async function DashboardLayout({ children }: DashboardLayoutProps) {
   const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = createSupabaseServerClient(cookieStore)
 
   const {
     data: { user },
