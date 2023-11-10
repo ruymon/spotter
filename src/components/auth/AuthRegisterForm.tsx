@@ -8,13 +8,13 @@ import { Button, buttonVariants } from "../ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { signIn } from "./auth-actions";
+import { signUp } from "./auth-actions";
 
-interface AuthLoginFormProps {
+interface AuthRegisterFormProps {
   message: string
 };
 
-  const loginFormSchema = z.object({
+const registerFormSchema = z.object({
   email: z.string().email({
     message: "Email inválido",
   }),
@@ -23,16 +23,16 @@ interface AuthLoginFormProps {
   }),
 });
 
-export type Login = z.infer<typeof loginFormSchema>;
+export type Register = z.infer<typeof registerFormSchema>;
 
-export function AuthLoginForm({ message }: AuthLoginFormProps) {
-  const loginForm = useForm<Login>({
-    resolver: zodResolver(loginFormSchema)
+export function AuthRegisterForm({ message }: AuthRegisterFormProps) {
+  const registerForm = useForm<Register>({
+    resolver: zodResolver(registerFormSchema)
   })
 
-  async function handleSignIn(values: Login) {
+  async function handleSignUp(values: Register) {
     try {
-      await signIn(values)
+      await signUp(values)
     } catch (error) {
       console.error(error)
     }
@@ -41,17 +41,17 @@ export function AuthLoginForm({ message }: AuthLoginFormProps) {
   return (
     <div className="flex flex-col w-full gap-8">
       <div className='flex flex-col'>
-        <h1 className='text-xl font-semibold text-foreground'>Olá novamente</h1>
+        <h1 className='text-xl font-semibold text-foreground'>Seja bem-vindo!</h1>
         <span className='text-muted-foreground'>Join the Spotter community</span>
       </div>
-      <Form {...loginForm}>
+      <Form {...registerForm}>
         <form
-          onSubmit={loginForm.handleSubmit(handleSignIn)}
+          onSubmit={registerForm.handleSubmit(handleSignUp)}
           className="flex flex-col w-full grow items-center gap-4 text-foreground"
         >
 
           <FormField
-            control={loginForm.control}
+            control={registerForm.control}
             name="email"
             render={({ field }) => (
               <FormItem className="w-full">
@@ -65,7 +65,7 @@ export function AuthLoginForm({ message }: AuthLoginFormProps) {
           />
 
           <FormField
-            control={loginForm.control}
+            control={registerForm.control}
             name="password"
             render={({ field }) => (
               <FormItem className="w-full">
@@ -79,11 +79,11 @@ export function AuthLoginForm({ message }: AuthLoginFormProps) {
           />
 
           <div className='mt-4 flex flex-col gap-3 w-full'>
-            <Button type="submit" disabled={loginForm.formState.isSubmitting}>
-              {loginForm.formState.isSubmitting ? 'Carregando...' : 'Entrar'}
+            <Button type="submit" disabled={registerForm.formState.isSubmitting}>
+              {registerForm.formState.isSubmitting ? 'Carregando...' : 'Criar conta'}
             </Button>
-            <Link href="/auth/register" className={buttonVariants({variant: "ghost"})}>
-              Criar uma conta
+            <Link href="/auth/login" className={buttonVariants({variant: "ghost"})}>
+              Entrar
             </Link>
           </div>
 

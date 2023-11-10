@@ -8,7 +8,7 @@ interface LogoProps {
 
 export function Logo({className}: LogoProps) {
   return (
-    <div className={cn("flex items-center gap-2 font-heading text-xl font-bold text-secondary-foreground", className)}>
+    <div className={cn("flex items-center gap-2 text-xl font-bold text-secondary-foreground", className)}>
       <Aperture className="w-6 text-primary shrink-0" />
       <span className="leading-none">{siteConfig.name}</span>
     </div>

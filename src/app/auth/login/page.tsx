@@ -21,5 +21,6 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
     redirect("/dashboard")
   }
 
+
   return <AuthLoginForm message={message}/>
 }

@@ -6,7 +6,6 @@ import { MaxWidthWrapper } from "./MaxWidthWrapper";
 import { NavbarItem } from "./NavbarItem";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
-
 interface NavbarProps {};
 
 export function Navbar({}: NavbarProps) {
