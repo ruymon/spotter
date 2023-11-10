@@ -5,7 +5,7 @@ import { cookies, headers } from "next/headers"
 import { redirect } from "next/navigation"
 import { Login } from "./AuthLoginForm"
 
-export const signIn = async ({ email, password }: Login) => {
+export async function signIn({ email, password}: Login) {
   const cookieStore = cookies()
   const supabase = createSupabaseServerClient(cookieStore)
 
@@ -22,7 +22,7 @@ export const signIn = async ({ email, password }: Login) => {
   return redirect('/dashboard')
 }
 
-export const signUp = async ({ email, password }: Login) => {
+export async function signUp({email, password}: Login) {
   const origin = headers().get('origin')
 
   const cookieStore = cookies()

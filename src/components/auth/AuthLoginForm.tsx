@@ -14,7 +14,7 @@ interface AuthLoginFormProps {
   message: string
 };
 
-const loginFormSchema = z.object({
+  const loginFormSchema = z.object({
   email: z.string().email({
     message: "Email inválido",
   }),
@@ -99,10 +99,10 @@ export function AuthLoginForm({ message }: AuthLoginFormProps) {
 
           <div className='mt-4 flex flex-col gap-3 w-full'>
             <Button type="submit" disabled={isSigningIn}>
-              {isSigningIn ? 'Loading...' : 'Update'}
+              {isSigningIn ? 'Carregando...' : 'Entrar'}
             </Button>
             <Button type="button" variant="ghost" onClick={loginForm.handleSubmit(handleSignUp)} disabled={isSigningUp}>
-              {isSigningUp ? 'Loading...' : 'Criar conta'}
+              {isSigningUp ? 'Carregando...' : 'Criar conta'}
             </Button>
           </div>
 
