@@ -1,9 +1,9 @@
 "use server"
 
+import { Login } from "@/components/auth/AuthLoginForm"
 import { createSupabaseServerClient } from "@/lib/database/server"
 import { cookies, headers } from "next/headers"
 import { redirect } from "next/navigation"
-import { Login } from "./AuthLoginForm"
 
 export async function signIn({ email, password}: Login) {
   const cookieStore = cookies()

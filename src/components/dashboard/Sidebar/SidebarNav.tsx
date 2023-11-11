@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { useSidebarContext } from "@/contexts/sidebarContext";
 import { cn } from "@/lib/utils";
 import { type ISidebarNavItem } from "@/types";
-import { Fingerprint, History, Home, Plus, Star, User } from "lucide-react";
+import { Fingerprint, History, Home, Plus, User } from "lucide-react";
 import { ReactNode } from "react";
 import { SidebarExpandToggle } from "./SidebarExpandToggle";
 import { SidebarNavItem } from "./SidebarNavItem";
@@ -34,13 +34,6 @@ const SidebarNavItems: ISidebarNavItem[] = [
     external: false
   },
   {
-    href: `/dashboard/saved`,
-    title: `Modelos salvos`,
-    icon: <Star />,
-    disabled: true,
-    external: false
-  },
-  {
     href: `/dashboard/account`,
     title: `Perfil`,
     icon: <User />,
@@ -57,7 +50,7 @@ export function SidebarNav({ children }: SidebarNavProps) {
   const { isSidebarExpanded } = useSidebarContext();
 
   return (
-    <aside className={cn("flex flex-col gap-5 h-screen top-0 py-8 px-2 sticky", isSidebarExpanded ? 'w-80' : 'w-16')}>
+    <aside className={cn("hidden md:flex flex-col gap-5 h-screen top-0 py-8 px-2 sticky", isSidebarExpanded ? 'w-80' : 'w-16')}>
       <div className="flex flex-col gap-6">
         <Logo className="pl-3 overflow-clip gap-3" />
         <Separator className="w-full" />

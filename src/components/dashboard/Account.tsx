@@ -229,7 +229,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
           type="submit"
           disabled={isLoading}
         >
-          {isLoading ? 'Loading ...' : 'Update'}
+          {isLoading ? 'Carregando ...' : 'Atualizar'}
         </Button>
       </form>
     </Form>

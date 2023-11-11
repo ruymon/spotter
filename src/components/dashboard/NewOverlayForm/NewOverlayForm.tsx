@@ -25,12 +25,16 @@ export type NewOverlayFormData = {
   overlaySettings: OverlaySettings
 }
 
+export type OverlayDataSyncStatus = "synced" | "syncing" | "unsynced";
+
 type NewOverlayFormContext = {
   currentFormStep: number, 
   onPreviousStep: () => void, 
   onNextStep: () => void,
   data: NewOverlayFormData,
   setData: (data: NewOverlayFormData) => void;
+  dataSyncedStatus: OverlayDataSyncStatus;
+  setDataSyncedStatus: (isDataSynced: OverlayDataSyncStatus) => void;
 };
 
 export const useNewOverlayFormContext = create<NewOverlayFormContext>(
@@ -57,6 +61,8 @@ export const useNewOverlayFormContext = create<NewOverlayFormContext>(
       },
     },
     setData: (data: NewOverlayFormData) => set(state => ({ data })),
+    dataSyncedStatus: "unsynced",
+    setDataSyncedStatus: (dataSyncedStatus: OverlayDataSyncStatus) => set(state => ({ dataSyncedStatus })),
   })
 );
 

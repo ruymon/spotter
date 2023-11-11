@@ -1,5 +1,6 @@
 "use client";
 
+import { signIn } from "@/actions/authActions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -8,7 +9,6 @@ import { Button, buttonVariants } from "../ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { signIn } from "./auth-actions";
 
 interface AuthLoginFormProps {
   message: string
