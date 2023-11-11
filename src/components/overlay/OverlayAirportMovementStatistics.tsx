@@ -1,11 +1,12 @@
 import { cn } from "@/lib/utils";
 import { MoveDownRight, MoveUpRight } from "lucide-react";
 import { ReactNode } from "react";
+import { Skeleton } from "../ui/skeleton";
 
 type AirportMovementStatisticsVariants = "arrivals" | "departures";
 
 interface OverlayAirportMovementStatisticsProps {
-  count: number;
+  count: number | null;
   variant: AirportMovementStatisticsVariants;
 }
 
@@ -32,7 +33,7 @@ export function OverlayAirportMovementStatistics({ count, variant }: OverlayAirp
       </figure>
 
       <div className="flex flex-col gap-1">
-        <span className="text-5xl font-bold text-gray-300">{count}</span>
+        { count !== null ? <span className="text-5xl font-bold text-gray-300">{count}</span> : <Skeleton className="w-12 h-14 bg-gray-800" />}
         <span className="text-sm text-gray-300">{AirportMovementStatisticsLabelVariants[variant]}</span>
       </div>
     </div>
