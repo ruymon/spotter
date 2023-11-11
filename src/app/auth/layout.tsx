@@ -1,4 +1,4 @@
-import { Logo } from "@/components/logo";
+import { Logo } from "@/components/Logo";
 import { siteConfig } from "@/config/site";
 import { CURRENT_YEAR } from "@/constants/date";
 import Link from "next/link";

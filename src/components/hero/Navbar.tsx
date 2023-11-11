@@ -1,7 +1,7 @@
+import { Logo } from "@/components/Logo";
 import { navbarConfig } from "@/config/navbar";
 import Link from "next/link";
 import { AuthButton } from "../auth/AuthButton";
-import { Logo } from "../logo";
 import { MaxWidthWrapper } from "./MaxWidthWrapper";
 import { NavbarItem } from "./NavbarItem";
 import { ThemeSwitcher } from "./ThemeSwitcher";

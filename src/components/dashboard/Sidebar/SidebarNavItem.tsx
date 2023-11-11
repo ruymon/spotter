@@ -2,11 +2,11 @@
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ISidebarNavItem } from "@/types";
+import { IDashboardNavItem } from "@/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-type SidebarNavItemProps = ISidebarNavItem;
+type SidebarNavItemProps = IDashboardNavItem;
 
 export function SidebarNavItem({ href, title, icon, disabled, external }: SidebarNavItemProps) {
   const pathname = usePathname();

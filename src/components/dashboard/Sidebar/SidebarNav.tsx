@@ -1,6 +1,6 @@
 "use client";
 
-import { Logo } from "@/components/logo";
+import { Logo } from "@/components/Logo";
 import { Separator } from "@/components/ui/separator";
 import { dashboardNavItems } from "@/config/dashboardNavigation";
 import { useSidebarContext } from "@/contexts/sidebarContext";
