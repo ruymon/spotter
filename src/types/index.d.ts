@@ -7,7 +7,7 @@ export type NavItem = {
   disabled?: boolean;
 };
 
-export type ISidebarNavItem = {
+export type IDashboardNavItem = {
   title: string;
   disabled?: boolean;
   external?: boolean;

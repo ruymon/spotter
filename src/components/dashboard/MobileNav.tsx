@@ -1,3 +1,4 @@
+import { dashboardNavItems } from "@/config/dashboardNavigation";
 import { Aperture } from "lucide-react";
 import { NavbarItem } from "../hero/NavbarItem";
 import { Separator } from "../ui/separator";
@@ -13,10 +14,7 @@ export function MobileNav({}: MobileNavProps) {
         <Separator orientation="vertical" className="h-6" />
 
         <ul className="flex items-center gap-4">
-          <NavbarItem href="/dashboard" label="Dashboard" />
-          <NavbarItem href="/dashboard/new" label="Novo" />
-          <NavbarItem href="/dashboard/history" label="Histórico" />
-          <NavbarItem href="/dashboard/account" label="Perfil" />
+          {dashboardNavItems.map(({href, title}) => <NavbarItem key={href} href={href} label={title} />)}
         </ul>
       </div>
     </nav>
