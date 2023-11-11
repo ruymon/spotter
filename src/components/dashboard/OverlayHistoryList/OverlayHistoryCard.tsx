@@ -1,18 +1,22 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { DEFAULT_URL } from "@/constants/url";
 import { getDistanceFromDate } from "@/lib/date";
+import { cn } from "@/lib/utils";
 import { Check, ExternalLink, Star } from "lucide-react";
+import Link from "next/link";
 import { NewOverlayFormData } from "../NewOverlayForm/NewOverlayForm";
 import { OverlayHistoryCardSetting } from "./OverlayHistoryCardSetting";
 
 interface OverlayHistoryCardProps {
+  id: string;
   updatedAt: string;
   createdAt: string;
   overlay: NewOverlayFormData;
 };
 
-export function OverlayHistoryCard({ overlay, updatedAt, createdAt }: OverlayHistoryCardProps) {
+export function OverlayHistoryCard({ overlay, updatedAt, createdAt, id }: OverlayHistoryCardProps) {
   console.log(new Date(createdAt))
 
   return (
@@ -49,9 +53,9 @@ export function OverlayHistoryCard({ overlay, updatedAt, createdAt }: OverlayHis
               <Star />
             </Button>
 
-            <Button size="icon" variant="outline" className="h-8 w-8 p-2">
+            <Link href={`${DEFAULT_URL}/overlay/${id}`} target="_blank" rel="noreferrer noopener" className={cn(buttonVariants({ size: "icon", variant: "outline" }), "h-8 w-8 p-2")}>
               <ExternalLink />
-            </Button>
+            </Link>
           </div>
 
           <Button className="h-8 p-2 text-sm font-medium shrink-0">

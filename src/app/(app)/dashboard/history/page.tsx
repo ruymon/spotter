@@ -37,6 +37,7 @@ export default async function OverlayHistoryDashboardPage() {
   }) => (
     <OverlayHistoryCard
       key={id}
+      id={id}
       overlay={data}
       updatedAt={updatedAt}
       createdAt={createdAt}
