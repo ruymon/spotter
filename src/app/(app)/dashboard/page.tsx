@@ -8,7 +8,6 @@ export default async function DashboardPage() {
   const supabase = createSupabaseServerClient(cookieStore)
 
   const { data: { user } } = await supabase.auth.getUser()
-
   const { data: profileData } = await supabase.from('profiles').select(`full_name, username, bio, avatar_url`).eq('id', user?.id).single()
 
   return (

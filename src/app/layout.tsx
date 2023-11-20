@@ -3,8 +3,7 @@ import { GeistSans } from 'geist/font/sans';
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { siteConfig } from "@/config/site";
-import { DEFAULT_URL } from "@/constants/url";
-import { cn } from "@/lib/utils";
+import { cn, getURL } from "@/lib/utils";
 import "@/styles/globals.css";
 
 
@@ -13,7 +12,7 @@ interface RootLayoutProps {
 }
 
 export const metadata = {
-  metadataBase: new URL(DEFAULT_URL),
+  metadataBase: new URL(getURL()),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,

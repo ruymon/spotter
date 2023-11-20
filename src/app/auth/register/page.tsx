@@ -1,7 +1,7 @@
 import { AuthRegisterForm } from "@/components/auth/AuthRegisterForm";
 import { createSupabaseServerClient } from "@/lib/database/server";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 interface RegisterPageProps {
   searchParams: { message: string }
@@ -18,7 +18,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
   } = await supabase.auth.getUser()
 
   if (user) {
-    redirect("/dashboard")
+    permanentRedirect("/dashboard")
   }
 
   return <AuthRegisterForm message={message} />

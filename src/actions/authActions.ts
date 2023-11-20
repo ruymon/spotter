@@ -1,6 +1,7 @@
 "use server"
 
 import { Login } from "@/components/auth/AuthLoginForm"
+import { ERROR_MESSAGES } from "@/constants/errors"
 import { createSupabaseServerClient } from "@/lib/database/server"
 import { cookies, headers } from "next/headers"
 import { redirect } from "next/navigation"
@@ -16,7 +17,7 @@ export async function signIn({ email, password}: Login) {
 
   if (error) {
     console.error(error);
-    return redirect('/auth/login?message=Could not authenticate user')
+    return redirect(`/auth/login?message=${ERROR_MESSAGES.AUTH.COULD_NOT_AUTHENTICATE_USER}`)
   }
 
   return redirect('/dashboard')
@@ -37,8 +38,8 @@ export async function signUp({email, password}: Login) {
   })
 
   if (error) {
-    return redirect('/auth/login?message=Could not authenticate user')
+    return redirect(`/auth/login?message=${ERROR_MESSAGES.AUTH.COULD_NOT_AUTHENTICATE_USER}`)
   }
 
-  return redirect('/auth/login?message=Check your email to continue sign in process')
+  return redirect(`/auth/login?message=${ERROR_MESSAGES.AUTH.CHECK_YOUR_EMAIL}`)
 }

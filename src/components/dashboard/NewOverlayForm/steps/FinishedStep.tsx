@@ -1,14 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { ONE_SECOND_IN_MILLISECONDS } from "@/constants/date";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { generateOverlayUrl } from "@/services/generateOverlay";
 import { Check, Copy, PartyPopper } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNewOverlayFormContext } from "../NewOverlayForm";
 import { OverlaySyncStatusCard } from "../SyncStatusCard";
-
-const COPIED_TIMEOUT = 1 * 1000; // 1s in ms
 
 export function FinishedStep() {
   const { data, dataSyncedStatus } = useNewOverlayFormContext();
@@ -20,7 +19,7 @@ export function FinishedStep() {
     if (copied) {
       const timer = setTimeout(() => {
         setCopied(false);
-      }, COPIED_TIMEOUT)
+      }, ONE_SECOND_IN_MILLISECONDS)
 
       return () => {
         clearTimeout(timer)

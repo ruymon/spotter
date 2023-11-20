@@ -42,7 +42,7 @@ export function AuthLoginForm({ message }: AuthLoginFormProps) {
     <div className="flex flex-col w-full gap-8">
       <div className='flex flex-col'>
         <h1 className='text-xl font-semibold text-foreground'>Olá novamente</h1>
-        <span className='text-muted-foreground'>Join the Spotter community</span>
+        <span className='text-muted-foreground'>Faça seu login para entrar na plataforma</span>
       </div>
       <Form {...loginForm}>
         <form
@@ -55,9 +55,9 @@ export function AuthLoginForm({ message }: AuthLoginFormProps) {
             name="email"
             render={({ field }) => (
               <FormItem className="w-full">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">E-mail</Label>
                 <FormControl>
-                  <Input type="email" autoComplete="email" placeholder="you@example.com" {...field} />
+                  <Input type="email" autoComplete="email" placeholder="voce@exemplo.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -69,7 +69,7 @@ export function AuthLoginForm({ message }: AuthLoginFormProps) {
             name="password"
             render={({ field }) => (
               <FormItem className="w-full">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Senha</Label>
                 <FormControl>
                   <Input type="password" autoComplete="current-password" placeholder="••••••••" {...field} />
                 </FormControl>
