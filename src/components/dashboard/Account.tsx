@@ -1,5 +1,6 @@
 'use client'
 
+import { useToast } from '@/hooks/useToast'
 import { createSupabaseClient } from '@/lib/database/client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Session } from '@supabase/supabase-js'
@@ -63,6 +64,7 @@ const accountFormSchema = z.object({
 type Account = z.infer<typeof accountFormSchema>;
 
 export default function AccountForm({ session }: { session: Session | null }) {
+  const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(true)
   const supabase = createSupabaseClient()
   const user = session?.user;
@@ -116,7 +118,16 @@ export default function AccountForm({ session }: { session: Session | null }) {
   })
 
   function onSubmit(values: Account) {
-    console.log(values);
+    if (accountForm.formState.isDirty === false) {
+      toast({
+        variant: 'alert',
+        title: "Nada para atualizar!",
+        description: "Você não alterou nenhum dado do seu perfil.",
+      })
+
+      return
+    }
+
     updateProfile(values)
   }
 
@@ -137,9 +148,17 @@ export default function AccountForm({ session }: { session: Session | null }) {
         throw error
       }
 
-      alert('Profile updated!');
+      toast({
+        variant: 'success',
+        title: "Perfil atualizado!",
+        description: "Seu perfil foi atualizado com sucesso.",
+      })
     } catch (error) {
-      alert('Error updating the data!')
+      toast({
+        variant: 'destructive',
+        title: "Eita, pô!",
+        description: "Ocorreu um erro ao atualizar o seu perfil. Tente novamente mais tarde.",
+      })
     } finally {
       setIsLoading(false)
     }

@@ -1,11 +1,16 @@
+"use client";
+
+import { deleteOverlay } from "@/actions/overlayHistoryActions";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { useToast } from "@/hooks/useToast";
 import { getDistanceFromDate } from "@/lib/date";
 import { cn, getURL } from "@/lib/utils";
-import { Check, ExternalLink, Star } from "lucide-react";
+import { Check, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { NewOverlayFormData } from "../NewOverlayForm/NewOverlayForm";
+import { OverlayHistoryCardDeleteButton } from "./OverlayHistoryCardDeleteButton";
 import { OverlayHistoryCardSetting } from "./OverlayHistoryCardSetting";
 
 interface OverlayHistoryCardProps {
@@ -16,7 +21,28 @@ interface OverlayHistoryCardProps {
 };
 
 export function OverlayHistoryCard({ overlay, updatedAt, createdAt, id }: OverlayHistoryCardProps) {
-  console.log(new Date(createdAt))
+  const { toast } = useToast();
+
+  function handleDeleteOverlay() {
+
+
+    try {
+      deleteOverlay(id);
+      
+      toast({
+        variant: "success",
+        title: "Sucesso!",
+        description: "O overlay foi deletado com sucesso.",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Eita, pô!",
+        description: "Ocorreu um erro ao deletar o overlay. Tente novamente mais tarde.",
+      });
+    }
+  }
+
 
   return (
     <Card className="flex flex-col bg-background border rounded-lg p-5 gap-8">
@@ -48,9 +74,7 @@ export function OverlayHistoryCard({ overlay, updatedAt, createdAt, id }: Overla
 
         <div className="flex flex-row items-center gap-2 w-full md:w-auto justify-between md:justify-normal">
           <div className="flex items-center gap-2">
-            <Button size="icon" variant="outline" className="h-8 w-8 p-2">
-              <Star />
-            </Button>
+            <OverlayHistoryCardDeleteButton onDelete={handleDeleteOverlay} />
 
             <Link href={`${getURL()}overlay/${id}`} target="_blank" rel="noreferrer noopener" className={cn(buttonVariants({ size: "icon", variant: "outline" }), "h-8 w-8 p-2")}>
               <ExternalLink />

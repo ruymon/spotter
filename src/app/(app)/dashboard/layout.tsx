@@ -24,7 +24,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
   }
 
   return (
-    <div className="flex w-full min-h-screen flex-col gap-8 md:gap-0 md:flex-row">
+    <div className="flex w-full min-h-screen bg-background flex-col gap-8 md:gap-0 md:flex-row">
       <SidebarNav>
         <SidebarSignOutButton />
       </SidebarNav>

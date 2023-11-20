@@ -1,11 +1,11 @@
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { ClientProviders } from '@/components/providers/ClientProviders';
+import { ServerProviders } from '@/components/providers/ServerProviders';
 import { siteConfig } from "@/config/site";
 import { cn, getURL } from "@/lib/utils";
 import "@/styles/globals.css";
-
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -34,20 +34,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased scrollbar-w-2 scrollbar-thumb-blue",
+          "min-h-screen font-sans bg-transparent antialiased scrollbar-w-2 scrollbar-thumb-blue",
           GeistSans.variable,
           GeistMono.variable
         )}
       >
-        <ThemeProvider
-          themes={['light', 'dark']}
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-          enableSystem={false}
-        >
-          {children}
-        </ThemeProvider>
+        <ServerProviders>
+          <ClientProviders>
+            {children}
+          </ClientProviders>
+        </ServerProviders>
       </body>
     </html>
   );
