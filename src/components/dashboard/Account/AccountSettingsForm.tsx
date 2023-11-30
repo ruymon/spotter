@@ -1,5 +1,9 @@
 'use client'
 
+import { FormItemHeader } from '@/components/dashboard/NewOverlayForm/FormItemHeader'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import { useToast } from '@/hooks/useToast'
 import { createSupabaseClient } from '@/lib/database/client'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -7,10 +11,6 @@ import { Session } from '@supabase/supabase-js'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from "zod"
-import { Button } from '../ui/button'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form'
-import { Input } from '../ui/input'
-import { FormItemHeader } from './NewOverlayForm/FormItemHeader'
 
 class AccountError extends Error {
   constructor(message: string, public readonly details: string, public readonly hint: string, public readonly code: string) {
@@ -22,7 +22,7 @@ class AccountError extends Error {
   }
 }
 
-const accountFormSchema = z.object({
+const accountSettingsFormSchema = z.object({
   username: z.coerce.string().max(15, {
     message: "Nome de usuário deve ter no máximo 15 caracteres.",
   }).min(2, {
@@ -61,16 +61,16 @@ const accountFormSchema = z.object({
   }).optional(),
 })
 
-type Account = z.infer<typeof accountFormSchema>;
+type Account = z.infer<typeof accountSettingsFormSchema>;
 
-export default function AccountForm({ session }: { session: Session | null }) {
+export function AccountSettingsForm({ session }: { session: Session | null }) {
   const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(true)
   const supabase = createSupabaseClient()
   const user = session?.user;
 
-  const accountForm = useForm<Account>({
-    resolver: zodResolver(accountFormSchema),
+  const accountSettingsForm = useForm<Account>({
+    resolver: zodResolver(accountSettingsFormSchema),
     defaultValues: async (): Promise<Account> => {
       try {
         setIsLoading(true)
@@ -118,7 +118,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
   })
 
   function onSubmit(values: Account) {
-    if (accountForm.formState.isDirty === false) {
+    if (accountSettingsForm.formState.isDirty === false) {
       toast({
         variant: 'alert',
         title: "Nada para atualizar!",
@@ -165,11 +165,11 @@ export default function AccountForm({ session }: { session: Session | null }) {
   }
 
   return (
-    <Form {...accountForm}>
-      <form onSubmit={accountForm.handleSubmit(onSubmit)} className="flex flex-col gap-8">
+    <Form {...accountSettingsForm}>
+      <form onSubmit={accountSettingsForm.handleSubmit(onSubmit)} className="flex flex-col gap-8">
 
         <FormField
-          control={accountForm.control}
+          control={accountSettingsForm.control}
           name="username"
           render={({ field }) => (
             <FormItem>
@@ -186,7 +186,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
         />
 
         <FormField
-          control={accountForm.control}
+          control={accountSettingsForm.control}
           name="fullName"
           render={({ field }) => (
             <FormItem>
@@ -211,7 +211,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
         </div>
 
         <FormField
-          control={accountForm.control}
+          control={accountSettingsForm.control}
           name="avatarUrl"
           render={({ field }) => (
             <FormItem>
@@ -228,7 +228,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
         />
 
         <FormField
-          control={accountForm.control}
+          control={accountSettingsForm.control}
           name="bio"
           render={({ field }) => (
             <FormItem>

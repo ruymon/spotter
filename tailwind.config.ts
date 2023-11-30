@@ -20,6 +20,8 @@ export default {
     'grid-cols-11',
     'grid-cols-12',
     'bg-orange-400',
+    'bg-orange-400',
+    'bg-blue-600',
     'text-orange-400',
     'bg-rose-400',
     'text-rose-400',

@@ -11,14 +11,14 @@ const variants: { [key in OverlayHatVariants]: string } = {
   'primary': 'border-primary',
   'secondary': 'border-secondary',
   'destructive': 'border-destructive',
-  'success': 'border-green-400',
-  'warning': 'border-orange-400',
-  'info': 'border-sky-400',
-  'purple': 'border-purple-400',
+  'success': 'border-green-600',
+  'warning': 'border-orange-600',
+  'info': 'border-blue-600',
+  'purple': 'border-purple-600',
 };
 
 export function OverlayHat({ label, variant = 'primary' }: OverlayHatProps) {
   return (
-    <span className={cn("text-sm font-medium pl-2 border-destructive border-l-2 capitalize text-gray-300", variants[variant])}>{label}</span>
+    <span className={cn("pl-2 border-l-2 capitalize text-muted-foreground", variants[variant])}>{label}</span>
   );
 };

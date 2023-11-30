@@ -1,6 +1,6 @@
 import { NewOverlayFormData } from "@/components/dashboard/NewOverlayForm/NewOverlayForm";
-import { OverlayBrandClock } from "@/components/overlay/OverlayBrandClock";
 import { OverlayHeader } from "@/components/overlay/OverlayHeader";
+import { OverlayQrCode } from "@/components/overlay/OverlayQrCode";
 import { OverlayStatistics } from "@/components/overlay/OverlayStatistics";
 import { createSupabaseServerClient } from "@/lib/database/server";
 import { AlertTriangle } from "lucide-react";
@@ -38,8 +38,8 @@ export default async function OverlayPage({ params }: OverlayPageProps) {
         <div className="flex flex-col gap-3">
           <span className="text-secondary-foreground font-medium text-base">Possíveis causas:</span>
           <ol className="flex flex-col gap-1.5 text-sm text-muted-foreground">
-            <li>O <code>ID</code> digitado não existe no banco de dados.</li>  
-            <li>Você está sem uma conexão com a internet.</li>  
+            <li>O <code>ID</code> digitado não existe no banco de dados.</li>
+            <li>Você está sem uma conexão com a internet.</li>
           </ol>
         </div>
       </div>
@@ -47,20 +47,24 @@ export default async function OverlayPage({ params }: OverlayPageProps) {
   }
 
   return (
-    <section className="flex flex-col gap-4 absolute top-0 left-0 p-4">
-      <OverlayBrandClock />
+    <main>
       <OverlayHeader
+        className="gap-6 absolute top-10 left-10"
         label={overlayData.eventDetails.label}
         title={overlayData.eventDetails.title}
         subtitle={overlayData.eventDetails.subtitle}
       />
+
       <OverlayStatistics
+        className="absolute bottom-10 right-10"
         locationIcao={overlayData.locationDetails.icao}
         locationLabel={overlayData.locationDetails.label}
         showMetar={overlayData.overlaySettings.showMetar}
         showInboundFlightsCount={overlayData.overlaySettings.showInboundFlightsCount}
         showOutboundFlightsCount={overlayData.overlaySettings.showOutboundFlightsCount}
       />
-    </section>
+
+      <OverlayQrCode qrCodeUrl="https://github.com/ruymon" title="Acesse o nosso site!" label="br.ivao.aero" />
+    </main>
   );
 };

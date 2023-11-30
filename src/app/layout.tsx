@@ -34,7 +34,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body
         className={cn(
-          "min-h-screen font-sans bg-transparent antialiased scrollbar-w-2 scrollbar-thumb-blue",
+          "min-h-screen font-sans bg-background antialiased scrollbar-w-2 scrollbar-thumb-blue",
           GeistSans.variable,
           GeistMono.variable
         )}

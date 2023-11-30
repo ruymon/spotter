@@ -1,20 +1,30 @@
+import { cn } from "@/lib/utils";
+import { VatsimBrasilLogo } from "../VatsimBrasilLogo";
+import { Card, CardHeader } from "../ui/card";
+import { OverlayClock } from "./OverlayClock";
 import { OverlayHat } from "./OverlayHat";
 
 interface OverlayHeaderProps {
   label: string;
   title: string;
   subtitle?: string;
+  className?: string;
 };
 
-export function OverlayHeader({ title, subtitle, label }: OverlayHeaderProps) {
+export function OverlayHeader({ title, subtitle, label, className }: OverlayHeaderProps) {
   return (
-    <header className="p-6 bg-gray-900/75 backdrop-blur rounded-xl max-w-sm w-fit flex flex-col gap-4">
-      <OverlayHat label={label} variant="primary" />
+    <Card className={cn("w-fit p-6", className)}>
+      <CardHeader className="flex-row items-center justify-between">
+        <OverlayHat label={label} variant="primary" />
+        <VatsimBrasilLogo className="text-secondary-foreground w-16" />
+      </CardHeader>
 
       <div className="flex flex-col gap-1.5">
-        <h1 className="text-3xl font-bold text-gray-50">{title}</h1>
-        <span className="font-normal text-sm text-gray-300">{subtitle}</span>
+        <h1 className="text-4xl font-bold text-secondary-foreground">{title}</h1>
+        <span className="font-normal text-muted-foreground">{subtitle}</span>
       </div>
-    </header>
+
+      <OverlayClock className="text-2xl font-bold text leading-none text-muted-foreground" />
+    </Card>
   );
 };

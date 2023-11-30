@@ -6,7 +6,7 @@ interface OverlayLayoutProps {
 
 export default function OverlayLayout({ children }: OverlayLayoutProps) {
   return (
-    <main className="relative w-screen h-screen overflow-hidden">
+    <main className="relative w-screen h-screen overflow-hidden !bg-transparent">
       {children}
     </main>
   );

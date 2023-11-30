@@ -41,7 +41,7 @@ export function OverlayClock({ className }: OverlayClockProps) {
 
   return (
     <div className="flex items-end">
-      <span className={cn('leading-none', className)}>{zuluTime}</span>
+      <span className={cn('leading-none w-32', className)}>{zuluTime}</span>
       <span className="h-full">UTC</span>
     </div>
   );

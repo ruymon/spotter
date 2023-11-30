@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col items-center gap-24 bg-background">
+    <main className="flex flex-col items-center gap-24">
       <Navbar />
       
       <MaxWidthWrapper className="flex flex-col gap-32 items-center w-full relative px-8 sm:px-16">

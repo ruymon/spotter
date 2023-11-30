@@ -13,19 +13,22 @@ export interface Database {
         Row: {
           created_at: string
           data: Json
-          id: number
+          id: string
+          updated_at: string | null
           user_id: string | null
         }
         Insert: {
           created_at?: string
           data: Json
-          id?: number
+          id?: string
+          updated_at?: string | null
           user_id?: string | null
         }
         Update: {
           created_at?: string
           data?: Json
-          id?: number
+          id?: string
+          updated_at?: string | null
           user_id?: string | null
         }
         Relationships: [
@@ -69,6 +72,113 @@ export interface Database {
             columns: ["id"]
             isOneToOne: true
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      team_members: {
+        Row: {
+          created_at: string
+          id: string
+          team_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          team_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          team_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_members_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "team_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      team_overlays: {
+        Row: {
+          created_at: string
+          id: string
+          overlay_id: string | null
+          team_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          overlay_id?: string | null
+          team_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          overlay_id?: string | null
+          team_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "team_overlays_overlay_id_fkey"
+            columns: ["overlay_id"]
+            isOneToOne: false
+            referencedRelation: "overlays"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "team_overlays_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      teams: {
+        Row: {
+          created_at: string
+          id: string
+          logo_url: string | null
+          name: string | null
+          owner_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          name?: string | null
+          owner_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          name?: string | null
+          owner_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "teams_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           }
         ]

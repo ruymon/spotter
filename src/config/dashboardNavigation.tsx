@@ -1,5 +1,5 @@
 import { IDashboardNavItem } from "@/types";
-import { History, Home, Plus, User } from "lucide-react";
+import { History, Home, Plus, User, Users2 } from "lucide-react";
 
 export const dashboardNavItems: IDashboardNavItem[] = [
   {
@@ -20,6 +20,13 @@ export const dashboardNavItems: IDashboardNavItem[] = [
     href: `/dashboard/history`,
     title: `Histórico`,
     icon: <History />,
+    disabled: false,
+    external: false
+  },
+  {
+    href: `/dashboard/teams`,
+    title: `Equipes`,
+    icon: <Users2 />,
     disabled: false,
     external: false
   },

@@ -1,4 +1,4 @@
-import AccountForm from "@/components/dashboard/Account";
+import { AccountSettingsForm } from "@/components/dashboard/Account/AccountSettingsForm";
 import { DashboardMaxWidthWrapper } from "@/components/dashboard/DashboardMaxWidthWrapper";
 import { createSupabaseServerClient } from "@/lib/database/server";
 import { cookies } from "next/headers";
@@ -20,7 +20,7 @@ export default async function AccountPage({}: AccountPageProps) {
         <span className="max-w-prose text-muted-foreground sm:text-lg">Gerencie as informações da sua conta.</span>
       </header>
 
-      <AccountForm session={session} />
+      <AccountSettingsForm session={session} />
     </DashboardMaxWidthWrapper>
   );
 };

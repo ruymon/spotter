@@ -59,7 +59,7 @@ export function OverlayHistoryCard({ overlay, updatedAt, createdAt, id }: Overla
         </Badge>
       </CardHeader>
 
-      <CardContent className="p-0 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-12">
+      <CardContent className="p-0 gap-6 flex flex-wrap">
         <OverlayHistoryCardSetting label="Aeródromo" description={overlay.locationDetails.icao} />
         <OverlayHistoryCardSetting label="Estatísticas de decolagens" description={overlay.overlaySettings.showOutboundFlightsCount === true ? "Exibir em tela" : 'Não exibir'} />
         <OverlayHistoryCardSetting label="Estatísticas de pousos" description={overlay.overlaySettings.showInboundFlightsCount === true ? "Exibir em tela" : 'Não exibir'} />

@@ -1,6 +1,6 @@
 import { OverlayHistoryCard } from "@/components/dashboard/OverlayHistoryList/OverlayHistoryCard";
+import { EmptyStateCard } from "@/components/illustrations/EmptyStateCard";
 import { createSupabaseServerClient } from "@/lib/database/server";
-import { DatabaseZap } from "lucide-react";
 import { cookies } from "next/headers";
 
 export default async function OverlayHistoryDashboardPage() {
@@ -18,15 +18,7 @@ export default async function OverlayHistoryDashboardPage() {
     .order('created_at', { ascending: false })
 
   if (overlayData?.length === 0 || !overlayData) {
-    return (
-      <div className="flex flex-col gap-6 items-center justify-center text-sm p-6 rounded-md text-left border-2 border-muted border-dashed">
-        <DatabaseZap className="text-muted-foreground w-8 shrink-0" />
-        <div className="flex flex-col items-center gap-0.5">
-          <span className="text-secondary-foreground font-medium text-base">Nenhum overlay encontrado...</span>
-          <span className="text-muted-foreground text-sm">Crie um para exibir aqui</span>
-        </div>
-      </div>
-    )
+    return <EmptyStateCard />
   }
 
   return overlayData.map(({

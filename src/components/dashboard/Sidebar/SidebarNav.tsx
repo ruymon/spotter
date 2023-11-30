@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { dashboardNavItems } from "@/config/dashboardNavigation";
 import { useSidebarContext } from "@/contexts/sidebarContext";
 import { cn } from "@/lib/utils";
-import { Fingerprint } from "lucide-react";
+import { Activity } from "lucide-react";
 import { ReactNode } from "react";
 import { SidebarExpandToggle } from "./SidebarExpandToggle";
 import { SidebarNavItem } from "./SidebarNavItem";
@@ -31,11 +31,11 @@ export function SidebarNav({ children }: SidebarNavProps) {
 
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-4 px-3 mb-3 overflow-clip">
-          <Fingerprint className="shrink-0 w-5 aspect-square text-primary" />
+          <Activity className="shrink-0 w-5 aspect-square text-primary" />
 
           <div className="flex flex-col whitespace-nowrap">
-            <span className="text-secondary-foreground font-semibold text-sm">Vatbrz</span>
-            <span className="text-xs text-muted-foreground">Conta vinculada à Vatsim HQ</span>
+            <span className="text-secondary-foreground font-semibold text-sm">Limite e cobrança</span>
+            <span className="text-xs text-muted-foreground">Consulte os limites da sua conta </span>
           </div>
         </div>
 
