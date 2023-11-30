@@ -10,7 +10,7 @@ export const navbarConfig: NavbarConfig = [
   {
     id: 2,
     title: 'Documentação',
-    href: '/docs',
+    href: '/documentation',
     disabled: false,
   },
   {
