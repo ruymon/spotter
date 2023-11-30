@@ -7,6 +7,8 @@ import { siteConfig } from "@/config/site";
 import { cn, getURL } from "@/lib/utils";
 import "@/styles/globals.css";
 
+import { Analytics } from '@vercel/analytics/react';
+
 interface RootLayoutProps {
   children: React.ReactNode;
 }
@@ -42,6 +44,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <ServerProviders>
           <ClientProviders>
             {children}
+            <Analytics />
           </ClientProviders>
         </ServerProviders>
       </body>
