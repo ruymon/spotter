@@ -64,7 +64,7 @@ export default async function OverlayPage({ params }: OverlayPageProps) {
         showOutboundFlightsCount={overlayData.overlaySettings.showOutboundFlightsCount}
       />
 
-      <OverlayQrCode qrCodeUrl="https://github.com/ruymon" title="Acesse o nosso site!" label="br.ivao.aero" />
+      <OverlayQrCode qrCodeUrl="https://spotter-ruymon.vercel.app" title="Crie overlays de graça com Spotter!" label="spotter-ruymon.vercel.app/" />
     </main>
   );
 };
